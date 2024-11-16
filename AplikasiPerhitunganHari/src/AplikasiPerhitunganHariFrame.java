@@ -132,6 +132,7 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(235, 234, 255));
         jButton1.setFont(new java.awt.Font("FZShuTi", 1, 12)); // NOI18N
         jButton1.setText("Hitung Jumlah Hari");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +176,7 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
 
         jTextField3.setText("Selisih Hari :");
 
+        jButton2.setBackground(new java.awt.Color(235, 234, 255));
         jButton2.setFont(new java.awt.Font("FZShuTi", 1, 12)); // NOI18N
         jButton2.setText("Hitung Selisih Hari");
 
