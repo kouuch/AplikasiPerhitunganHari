@@ -311,14 +311,14 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
     int bulan = cmbBulan.getSelectedIndex() + 1;  // Mendapatkan bulan yang dipilih
     int tahun = (Integer) spinnerTahun.getValue();  // Mendapatkan tahun dari JSpinner
 
-    // Mendapatkan tanggal pertama bulan yang dipilih dari calendar1
+    // Mendapatkan tanggal pertama bulan yang dipilih
     LocalDate tanggalAwal = LocalDate.of(tahun, bulan, 1);  
     LocalDate tanggalAkhir = tanggalAwal.withDayOfMonth(tanggalAwal.lengthOfMonth());  // Tanggal terakhir bulan
 
-    int jumlahHari = tanggalAkhir.getDayOfMonth();  // Menghitung jumlah hari dalam bulan
+    int jumlahHari = tanggalAwal.lengthOfMonth();  // Menghitung jumlah hari dalam bulan
     lblSelisihHari.setText("Jumlah Hari: " + jumlahHari);
-    lblHariPertama.setText("Hari Pertama: " + tanggalAwal.getDayOfWeek());
-    lblHariTerakhir.setText("Hari Terakhir: " + tanggalAkhir.getDayOfWeek());
+    lblHariPertama.setText("Hari Pertama: " + tanggalAwal.getDayOfWeek().toString());
+    lblHariTerakhir.setText("Hari Terakhir: " + tanggalAkhir.getDayOfWeek().toString());
     }//GEN-LAST:event_btnHitungJumlahHariActionPerformed
 
     private void btnHitungSelisihHariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHitungSelisihHariActionPerformed
