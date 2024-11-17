@@ -19,6 +19,12 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
      */
     public AplikasiPerhitunganHariFrame() {
         initComponents();
+        
+        // Menambahkan nama bulan ke dalam JComboBox
+    String[] bulan = { "Januari", "Februari", "Maret", "April", "Mei", "Juni", 
+                       "Juli", "Agustus", "September", "Oktober", "November", "Desember" };
+    
+    cmbBulan.setModel(new javax.swing.DefaultComboBoxModel<>(bulan));  // Set model JComboBox dengan nama bulan
     }
 
     /**
@@ -73,6 +79,11 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
         jLabel9.setText("Masuka tahun");
 
         cmbBulan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbBulan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbBulanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -321,6 +332,23 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
     // Menampilkan selisih hari
     lblSelisihHari.setText("Selisih Hari: " + selisihHari);
     }//GEN-LAST:event_btnHitungSelisihHariActionPerformed
+
+    private void cmbBulanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBulanActionPerformed
+     // Ambil bulan yang dipilih
+    int bulan = cmbBulan.getSelectedIndex() + 1;  // Bulan mulai dari index 0, jadi tambahkan 1
+    int tahun = (Integer) spinnerTahun.getValue();  // Ambil tahun dari spinner
+
+    // Ubah bulan di kalender sesuai bulan yang dipilih
+    LocalDate tanggal = LocalDate.of(tahun, bulan, 1);  // Buat LocalDate untuk tanggal 1 bulan tersebut
+    calender1.setDate(java.sql.Date.valueOf(tanggal));  // Set tanggal ke calendar1 (bulan dan tahun)
+
+    // Jika diperlukan, perbarui tampilan hari pertama dan terakhir
+    LocalDate tanggalAwal = LocalDate.of(tahun, bulan, 1);
+    LocalDate tanggalAkhir = tanggalAwal.withDayOfMonth(tanggalAwal.lengthOfMonth());
+
+    lblHariPertama.setText("Hari Pertama: " + tanggalAwal.getDayOfWeek().toString());
+    lblHariTerakhir.setText("Hari Terakhir: " + tanggalAkhir.getDayOfWeek().toString());
+    }//GEN-LAST:event_cmbBulanActionPerformed
 
     /**
      * @param args the command line arguments
