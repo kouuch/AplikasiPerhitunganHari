@@ -1,3 +1,8 @@
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -39,7 +44,7 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
         lblHariTerakhir = new javax.swing.JTextField();
         btnHitungJumlahHari = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        calender2 = new com.toedter.calendar.JCalendar();
+        calendar2 = new com.toedter.calendar.JCalendar();
         calendar3 = new com.toedter.calendar.JCalendar();
         lblSelisihHari = new javax.swing.JTextField();
         btnHitungSelisihHari = new javax.swing.JButton();
@@ -181,6 +186,11 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
         btnHitungSelisihHari.setText("Hitung Selisih Hari");
         btnHitungSelisihHari.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnHitungSelisihHari.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnHitungSelisihHari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHitungSelisihHariActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -190,7 +200,7 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(calender2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(calendar2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(calendar3, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel7Layout.createSequentialGroup()
@@ -206,7 +216,7 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(calender2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(calendar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(calendar3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addComponent(lblSelisihHari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,8 +297,30 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_lblHariPertamaActionPerformed
 
     private void btnHitungJumlahHariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHitungJumlahHariActionPerformed
-        // TODO add your handling code here:
+    int bulan = cmbBulan.getSelectedIndex() + 1;  // Mendapatkan bulan yang dipilih
+    int tahun = (Integer) spinnerTahun.getValue();  // Mendapatkan tahun dari JSpinner
+
+    // Mendapatkan tanggal pertama bulan yang dipilih dari calendar1
+    LocalDate tanggalAwal = LocalDate.of(tahun, bulan, 1);  
+    LocalDate tanggalAkhir = tanggalAwal.withDayOfMonth(tanggalAwal.lengthOfMonth());  // Tanggal terakhir bulan
+
+    int jumlahHari = tanggalAkhir.getDayOfMonth();  // Menghitung jumlah hari dalam bulan
+    lblSelisihHari.setText("Jumlah Hari: " + jumlahHari);
+    lblHariPertama.setText("Hari Pertama: " + tanggalAwal.getDayOfWeek());
+    lblHariTerakhir.setText("Hari Terakhir: " + tanggalAkhir.getDayOfWeek());
     }//GEN-LAST:event_btnHitungJumlahHariActionPerformed
+
+    private void btnHitungSelisihHariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHitungSelisihHariActionPerformed
+     // Mengambil tanggal dari calendar2 dan calendar3
+    LocalDate tanggal1 = calendar2.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    LocalDate tanggal2 = calendar3.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+    // Menghitung selisih hari antara tanggal1 dan tanggal2
+    long selisihHari = ChronoUnit.DAYS.between(tanggal1, tanggal2);
+
+    // Menampilkan selisih hari
+    lblSelisihHari.setText("Selisih Hari: " + selisihHari);
+    }//GEN-LAST:event_btnHitungSelisihHariActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,9 +360,9 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHitungJumlahHari;
     private javax.swing.JButton btnHitungSelisihHari;
+    private com.toedter.calendar.JCalendar calendar2;
     private com.toedter.calendar.JCalendar calendar3;
     private com.toedter.calendar.JCalendar calender1;
-    private com.toedter.calendar.JCalendar calender2;
     private javax.swing.JComboBox<String> cmbBulan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
