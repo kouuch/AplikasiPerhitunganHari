@@ -38,4 +38,4 @@ Pastikan Anda memiliki:
    - Pilih tanggal awal dan akhir pada kalender untuk menghitung selisih hari.
      
 ## Screenshot
-![t4](https://github.com/user-attachments/assets/ee7b8893-3e90-4a5b-8603-f778bf61dc43)
+![t4 1](https://github.com/user-attachments/assets/ec1ef368-db33-4be3-a089-7eed522e2dbe)
