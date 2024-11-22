@@ -1,5 +1,6 @@
 
 import java.time.LocalDate;
+import java.time.Year;
 import java.time.ZoneId;
 import java.time.format.TextStyle;
 import java.time.temporal.ChronoUnit;
@@ -53,6 +54,7 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
         lblHariPertama = new javax.swing.JTextField();
         lblHariTerakhir = new javax.swing.JTextField();
         btnHitungJumlahHari = new javax.swing.JButton();
+        lblKabisat = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         calendar2 = new com.toedter.calendar.JCalendar();
         calendar3 = new com.toedter.calendar.JCalendar();
@@ -166,6 +168,8 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
             }
         });
 
+        lblKabisat.setText("Tahun Kabisat :");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -176,7 +180,8 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
                     .addComponent(calender1, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                     .addComponent(lblHariPertama)
                     .addComponent(lblHariTerakhir)
-                    .addComponent(btnHitungJumlahHari, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnHitungJumlahHari, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblKabisat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -188,9 +193,11 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
                 .addComponent(lblHariPertama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblHariTerakhir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(lblKabisat)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnHitungJumlahHari, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
 
         jPanel7.setBackground(new java.awt.Color(150, 148, 255));
@@ -254,7 +261,7 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
                 .addComponent(lblSelisihHari, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnHitungSelisihHari, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Engravers MT", 1, 12)); // NOI18N
@@ -301,7 +308,7 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 7, Short.MAX_VALUE))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -312,9 +319,7 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -356,6 +361,9 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
     lblHariPertama.setText("Hari Pertama: " + hariPertama);
     lblHariTerakhir.setText("Hari Terakhir: " + hariTerakhir);
     //lblSelisihHari.setText("Jumlah Hari: " + jumlahHari);
+    
+    boolean isKabisat = Year.of(tahun).isLeap();
+    lblKabisat.setText("Tahun Kabisat: " + (isKabisat ? "Ya" : "Tidak"));
     }//GEN-LAST:event_btnHitungJumlahHariActionPerformed
 
     private void btnHitungSelisihHariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHitungSelisihHariActionPerformed
@@ -447,6 +455,7 @@ public class AplikasiPerhitunganHariFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JTextField lblHariPertama;
     private javax.swing.JTextField lblHariTerakhir;
+    private javax.swing.JLabel lblKabisat;
     private javax.swing.JTextField lblSelisihHari;
     private com.toedter.components.JSpinField spinnerTahun;
     // End of variables declaration//GEN-END:variables
